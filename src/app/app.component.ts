@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InterceptorService } from './interceptores/interceptor.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'sesion09';
+
+  // 
+  postsList: any = [];
+
+  constructor(private interceptor: InterceptorService) { }
+
+  ngOnInit(): void {
+    this.interceptor.getPosts()
+      .subscribe((response: any) => this.postsList = response)
+  }
+  // 
 }
